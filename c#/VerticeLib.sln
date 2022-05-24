@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerticeLib", "VerticeLib\VerticeLib.csproj", "{567781D1-3EEA-4483-8FAD-E96936C3ACE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerticeLibUnitaryTests", "VerticeLibTests\VerticeLibUnitaryTests.csproj", "{89972DE8-22CA-400D-8559-DBA4B7E59F08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{567781D1-3EEA-4483-8FAD-E96936C3ACE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567781D1-3EEA-4483-8FAD-E96936C3ACE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567781D1-3EEA-4483-8FAD-E96936C3ACE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567781D1-3EEA-4483-8FAD-E96936C3ACE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89972DE8-22CA-400D-8559-DBA4B7E59F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89972DE8-22CA-400D-8559-DBA4B7E59F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89972DE8-22CA-400D-8559-DBA4B7E59F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89972DE8-22CA-400D-8559-DBA4B7E59F08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A3F1CEE-3000-4F3B-B52F-37F3EDD04BBB}
+	EndGlobalSection
+EndGlobal
