@@ -1,0 +1,19 @@
+﻿{
+  // ACTION REQUIRED: This file was automatically added to your project, but it
+  // will not take effect until additional steps are taken to enable it. See the
+  // following page for additional information:
+  //
+  // https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/EnableConfiguration.md
+
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "documentationRules": {
+      "companyName": "Ricardo Gonzalez-Garza and 5Vertice Team",
+      "copyrightText": "This file is part of the VerticeLib distribution (https://github.com/rickygzz/VerticeLib/).\r\nCopyright (c) {year} {companyName}. All Rights Reserved.\r\nContact {email} for additional information.\r\n\r\nThis program is free software: you can redistribute it and/or modify\r\nit under the terms of the GNU General Public License as published by\r\nthe Free Software Foundation, version 3.\r\n\r\nThis program is distributed in the hope that it will be useful, but\r\nWITHOUT ANY WARRANTY; without even the implied warranty of\r\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU\r\nGeneral Public License for more details.\r\n\r\nYou should have received a copy of the GNU General Public License\r\nalong with this program. If not, see (http://www.gnu.org/licenses/).",
+      "variables": {
+        "email": "ricardo@5vertice.com",
+        "year": "2018 - 2022"
+      }
+    }
+  }
+}

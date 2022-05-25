@@ -5,7 +5,12 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerticeLib", "VerticeLib\VerticeLib.csproj", "{567781D1-3EEA-4483-8FAD-E96936C3ACE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerticeLibUnitaryTests", "VerticeLibTests\VerticeLibUnitaryTests.csproj", "{89972DE8-22CA-400D-8559-DBA4B7E59F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerticeLibUnitaryTests", "VerticeLibTests\VerticeLibUnitaryTests.csproj", "{89972DE8-22CA-400D-8559-DBA4B7E59F08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{638E3292-204D-42F3-8366-714C7B97F49F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
