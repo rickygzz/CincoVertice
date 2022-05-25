@@ -13,7 +13,7 @@
             // Must return string after delimiter = without trimming.
             Assert.AreEqual(" B ", VerticeLib.Strings.Strings.After(test1, "="));
 
-            // Must return trimmed string after delmiter =
+            // Must return trimmed string after delimiter =
             Assert.AreEqual("B", VerticeLib.Strings.Strings.After(test1, "=", true));
 
             // Must return string after first delimiter is found.
