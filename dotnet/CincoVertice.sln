@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CincoVertice.UI", "VerticeLib.UI\CincoVertice.UI.csproj", "{E860E87D-1A11-4740-B335-947661FB07BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CincoVertice.UI", "CincoVertice.UI\CincoVertice.UI.csproj", "{E860E87D-1A11-4740-B335-947661FB07BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CincoVertice.Utils", "VerticeLib.Utils\CincoVertice.Utils.csproj", "{E1C3445F-29B3-4235-A86A-E5A5A5910ADB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CincoVertice.Utils", "CincoVertice.Utils\CincoVertice.Utils.csproj", "{E1C3445F-29B3-4235-A86A-E5A5A5910ADB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CincoVertice.Utils.Tests", "VerticeLib.Utils.Tests\CincoVertice.Utils.Tests.csproj", "{71730F58-B4D0-4E26-A80F-A13076388DE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CincoVertice.Utils.Tests", "CincoVertice.Utils.Tests\CincoVertice.Utils.Tests.csproj", "{71730F58-B4D0-4E26-A80F-A13076388DE8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A22A731-466B-4A51-84DA-C4E6A0280720}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CincoVertice.WinAPI", "CincoVertice.WinAPI\CincoVertice.WinAPI.csproj", "{4A626D44-49D9-41B6-895D-7C15F34F5A01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{71730F58-B4D0-4E26-A80F-A13076388DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71730F58-B4D0-4E26-A80F-A13076388DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71730F58-B4D0-4E26-A80F-A13076388DE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A626D44-49D9-41B6-895D-7C15F34F5A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A626D44-49D9-41B6-895D-7C15F34F5A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A626D44-49D9-41B6-895D-7C15F34F5A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A626D44-49D9-41B6-895D-7C15F34F5A01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
