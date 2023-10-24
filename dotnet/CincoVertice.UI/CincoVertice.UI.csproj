@@ -24,11 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CincoVertice.UI.Controls\CincoVertice.UI.Controls.csproj" />
     <ProjectReference Include="..\CincoVertice.WinAPI\CincoVertice.WinAPI.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
     <ApplicationDefaultFont>Segoe UI, 9pt</ApplicationDefaultFont>
+    <StartupObject>CincoVertice.UI.Program</StartupObject>
   </PropertyGroup>
 
 </Project>

@@ -38,7 +38,7 @@ namespace VerticeLib
                 _mouse.Start();
                 return;
             }
-            
+
             _mouse.Stop();
         }
     }
