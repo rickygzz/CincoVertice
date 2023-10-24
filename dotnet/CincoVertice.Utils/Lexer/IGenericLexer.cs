@@ -1,6 +1,4 @@
-﻿using VerticeLib.Utils.Lexer.Extensions;
-
-namespace CincoVertice.Utils.Lexer
+﻿namespace CincoVertice.Utils.Lexer
 {
     /// <summary>
     /// GenericLexer interface.
