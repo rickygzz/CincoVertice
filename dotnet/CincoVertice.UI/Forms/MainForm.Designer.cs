@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             checkBox1 = new CheckBox();
-            mdiTab1 = new CincoVertice.UI.Controls.MDITab();
+            mdiTab1 = new CincoVertice.UI.Controls.MdiTab.MdiTab();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             mdiTab1.SuspendLayout();
@@ -38,7 +38,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(25, 40);
+            checkBox1.Location = new Point(12, 56);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(83, 19);
             checkBox1.TabIndex = 0;
@@ -101,7 +101,7 @@
         #endregion
 
         private CheckBox checkBox1;
-        private CincoVertice.UI.Controls.MDITab mdiTab1;
+        private CincoVertice.UI.Controls.MdiTab.MdiTab mdiTab1;
         private TabPage tabPage1;
         private TabPage tabPage2;
     }
