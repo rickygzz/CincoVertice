@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel;
 
-namespace CincoVertice.UI.Controls
+namespace CincoVertice.UI.Controls.MdiTab
 {
-    public class MDITab : TabControl
+    public class MdiTab : TabControl
     {
         /// <summary>
-        /// An application sends the WM_SETREDRAW message to a window to allow changes in that window to be redrawn or to prevent changes in that window from being redrawn.
+        /// An application sends the WM_SETREDRAW message to a window to allow changes in that window to be redrawn or
+        /// to prevent changes in that window from being redrawn.
         /// wParam   The redraw state.If this parameter is TRUE, the content can be redrawn after a change.
         ///          If this parameter is FALSE, the content cannot be redrawn after a change.
         /// </summary>
@@ -13,7 +14,7 @@ namespace CincoVertice.UI.Controls
 
         private Point dragStartPosition = Point.Empty;
 
-        private Brush brushMain = new SolidBrush(Color.FromArgb(132, 150, 176));
+        private readonly Brush brushMain = new SolidBrush(Color.FromArgb(132, 150, 176));
 
         // private Brush brushTaxCertificates = new SolidBrush(Color.FromArgb(189, 215, 238));
         // private Brush brushOrganization = new SolidBrush(Color.FromArgb(254, 229, 153));
@@ -21,34 +22,34 @@ namespace CincoVertice.UI.Controls
         // private Brush brushInvoice = new SolidBrush(Color.FromArgb(112, 173, 71));
         // private Brush brushProduct = new SolidBrush(Color.FromArgb(146, 208, 80));
         // private Brush brushDarkText = new SolidBrush(Color.FromArgb(34, 42, 53));
-        private Brush brushLightText = new SolidBrush(Color.FromArgb(255, 255, 255));
+        private readonly Brush brushLightText = new SolidBrush(Color.FromArgb(255, 255, 255));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MDITab"/> class.
         /// </summary>
-        public MDITab()
+        public MdiTab()
         {
             // Set initial TabControl settings
-            this.Appearance = TabAppearance.Buttons;
-            this.Dock = DockStyle.Top;
-            this.AllowDrop = true;
-            this.DrawMode = TabDrawMode.OwnerDrawFixed;
-            this.Padding = new Point(18, 3);
-            this.ItemSize = new Size(0, 30);
-            this.MaximumSize = new Size(99999, 32);
-            this.Size = new Size(10, 31);
-            this.Visible = true;
+            Appearance = TabAppearance.Buttons;
+            Dock = DockStyle.Top;
+            AllowDrop = true;
+            DrawMode = TabDrawMode.OwnerDrawFixed;
+            Padding = new Point(18, 3);
+            ItemSize = new Size(0, 30);
+            MaximumSize = new Size(99999, 32);
+            Size = new Size(10, 31);
+            Visible = true;
 
-            this.MouseDown += new MouseEventHandler(this.CtlTabs_MouseDown);
-            this.MouseMove += new MouseEventHandler(this.CtlTabs_MouseMove);
-            this.DragOver += new DragEventHandler(this.CtlTabs_DragOver);
+            MouseDown += new MouseEventHandler(CtlTabs_MouseDown!);
+            MouseMove += new MouseEventHandler(CtlTabs_MouseMove!);
+            DragOver += new DragEventHandler(CtlTabs_DragOver!);
 
-            this.SelectedIndexChanged += new EventHandler(this.CtlTabs_SelectedIndexChanged);
-            this.DrawItem += new DrawItemEventHandler(this.CtlTabs_DrawItem);
-            this.MouseClick += new MouseEventHandler(this.CtlTabs_MouseClick);
+            SelectedIndexChanged += new EventHandler(CtlTabs_SelectedIndexChanged!);
+            DrawItem += new DrawItemEventHandler(CtlTabs_DrawItem!);
+            MouseClick += new MouseEventHandler(CtlTabs_MouseClick!);
 
             // To add MdiChildActivate event handler, we need the parent handle set at ParentChanged
-            this.ParentChanged += new EventHandler(this.CtlTabs_ParentChanged);
+            ParentChanged += new EventHandler(CtlTabs_ParentChanged!);
         }
 
         /// <summary>
@@ -79,120 +80,119 @@ namespace CincoVertice.UI.Controls
         /// <param name="wMsg">Message to be sent</param>
         /// <param name="wParam">wParam Additional message-specific information.</param>
         /// <param name="lParam">lParam Additional message-specific information.</param>
-        /// <returns>The return value specifies the result of the message processing; it depends on the message sent.</returns>
+        /// <returns>
+        ///     The return value specifies the result of the message processing; it depends on the message sent.
+        /// </returns>
         [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern int SendMessage(IntPtr hWnd, int wMsg, bool wParam, int lParam);
+        private static extern int SendMessage(nint hWnd, int wMsg, bool wParam, int lParam);
 
         private void CtlTabs_ParentChanged(object sender, EventArgs e)
         {
             // As soon as the parent is set, wire the MdiChildActivate event handler
-            ((Form)this.Parent).MdiChildActivate += new EventHandler(this.ParentForm_MdiChildActivate);
+            ((Form)Parent!).MdiChildActivate += new EventHandler(ParentForm_MdiChildActivate!);
         }
 
         private void CtlTabs_MouseClick(object sender, MouseEventArgs e)
         {
-            if (this.DesignMode)
+            if (DesignMode)
             {
                 return;
             }
 
-            if (this.SelectedIndex != -1)
+            if (SelectedIndex != -1)
             {
-                Rectangle rectTab = this.GetTabRect(this.SelectedIndex);
+                Rectangle rectTab = GetTabRect(SelectedIndex);
 
-                if (this.SelectedIndex != 0)
+                if (SelectedIndex != 0)
                 {
                     // Check if close icon was pressed
                     Rectangle rectClose = new Rectangle(
-                        rectTab.X + rectTab.Width - this.Padding.X - 5,
+                        rectTab.X + rectTab.Width - Padding.X - 5,
                         rectTab.Y,
-                        this.Padding.X + 5,
+                        Padding.X + 5,
                         rectTab.Height);
 
                     if (rectClose.Contains(e.Location))
                     {
-                        ((TabPageTag)this.SelectedTab.Tag).OwnerForm.Close();
+                        ((TabPageTag)SelectedTab.Tag!).OwnerForm.Close();
                     }
                 }
 
-                if (rectTab.Contains(e.Location)) // && e.Button == MouseButtons.Right)
+                if (rectTab.Contains(e.Location)
+                    && SelectedTab != null
+                    && ((TabPageTag)SelectedTab.Tag!).Menu != null) // && e.Button == MouseButtons.Right)
                 {
-                    if (this.SelectedTab != null && ((TabPageTag)this.SelectedTab.Tag).Menu != null)
-                    {
-                        Rectangle rect = this.GetTabRect(this.TabPages.IndexOf(this.SelectedTab));
-                        Point pt = this.PointToScreen(new Point(rect.X, rect.Y + rect.Height));
+                    Rectangle rect = GetTabRect(TabPages.IndexOf(SelectedTab));
+                    Point pt = PointToScreen(new Point(rect.X, rect.Y + rect.Height));
 
-                        ((TabPageTag)this.SelectedTab.Tag).Menu.Show(pt);
-                    }
+                    ((TabPageTag)SelectedTab.Tag).Menu.Show(pt);
                 }
             }
         }
 
-        private void CtlTabs_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void CtlTabs_MouseDown(object sender, MouseEventArgs e)
         {
-            if (this.DesignMode)
+            if (DesignMode)
             {
                 return;
             }
 
-            TabPage tp = this.HoverTab();
+            TabPage tp = HoverTab();
             if (tp != null)
             {
-                Rectangle rectTab = this.GetTabRect(this.TabPages.IndexOf(tp));
+                Rectangle rectTab = GetTabRect(TabPages.IndexOf(tp));
 
                 Rectangle rectClose = new Rectangle(
-                    rectTab.X + rectTab.Width - this.Padding.X,
+                    rectTab.X + rectTab.Width - Padding.X,
                     rectTab.Y,
-                    this.Padding.X,
+                    Padding.X,
                     rectTab.Height);
 
                 if (!rectClose.Contains(e.Location))
                 {
-                    this.dragStartPosition = new Point(e.X, e.Y);
+                    dragStartPosition = new Point(e.X, e.Y);
                 }
             }
             else
             {
-                this.dragStartPosition = Point.Empty;
+                dragStartPosition = Point.Empty;
             }
         }
 
-        private void CtlTabs_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void CtlTabs_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.DesignMode)
+            if (DesignMode)
             {
                 return;
             }
 
-            if (e.Button != MouseButtons.Left || this.dragStartPosition == Point.Empty)
+            if (e.Button != MouseButtons.Left || dragStartPosition == Point.Empty)
             {
                 return;
             }
 
             // When moving the mouse while holding the left button
             // Get the hovered tab
-            TabPage tp = this.HoverTab();
+            TabPage tp = HoverTab();
 
-            if (tp != null)
+            if (tp != null
+                && (Math.Abs(e.X - dragStartPosition.X) > 6 || Math.Abs(e.Y - dragStartPosition.Y) > 6))
             {
-                if (Math.Abs(e.X - this.dragStartPosition.X) > 6 || Math.Abs(e.Y - this.dragStartPosition.Y) > 6)
-                {
-                    // Start dragging the clicked TabPage
-                    this.DoDragDrop(tp, DragDropEffects.All);
-                    this.dragStartPosition = Point.Empty;
-                }
+                // Start dragging the clicked TabPage
+                DoDragDrop(tp, DragDropEffects.All);
+                dragStartPosition = Point.Empty;
             }
         }
 
-        private void CtlTabs_DragOver(object sender, System.Windows.Forms.DragEventArgs e)
+        private void CtlTabs_DragOver(object sender, DragEventArgs e)
         {
-            if (this.DesignMode)
+            if (DesignMode)
             {
                 return;
             }
 
             // Get the tab it is dragging over to
-            TabPage hoverTab = this.HoverTab();
+            TabPage hoverTab = HoverTab();
 
             if (hoverTab == null)
             {
@@ -200,22 +200,22 @@ namespace CincoVertice.UI.Controls
             }
             else
             {
-                if (e.Data.GetDataPresent(typeof(TabPage)))
+                if (e.Data!.GetDataPresent(typeof(TabPage)))
                 {
                     e.Effect = DragDropEffects.Move;
-                    TabPage dragTab = (TabPage)e.Data.GetData(typeof(TabPage));
+                    TabPage dragTab = (TabPage)e.Data!.GetData(typeof(TabPage))!;
 
                     if (hoverTab == dragTab)
                     {
                         return;
                     }
 
-                    Rectangle tabRect = this.GetTabRect(this.TabPages.IndexOf(hoverTab));
+                    Rectangle tabRect = GetTabRect(TabPages.IndexOf(hoverTab));
                     tabRect.Inflate(-3, -3);
-                    if (tabRect.Contains(this.PointToClient(new Point(e.X, e.Y))))
+                    if (tabRect.Contains(PointToClient(new Point(e.X, e.Y))))
                     {
-                        this.SwapTabPages(dragTab, hoverTab);
-                        this.SelectedTab = dragTab;
+                        SwapTabPages(dragTab, hoverTab);
+                        SelectedTab = dragTab;
                     }
                 }
             }
@@ -228,25 +228,25 @@ namespace CincoVertice.UI.Controls
         /// <returns>Hovered TabPage</returns>
         private TabPage HoverTab()
         {
-            for (int index = 1; index <= this.TabCount - 1; index++)
+            for (int index = 1; index <= TabCount - 1; index++)
             {
-                if (this.GetTabRect(index).Contains(this.PointToClient(Cursor.Position)))
+                if (GetTabRect(index).Contains(PointToClient(Cursor.Position)))
                 {
                     // Cursor position is within this tabpage
-                    return this.TabPages[index];
+                    return TabPages[index];
                 }
             }
 
-            return null;
+            return null!;
         }
 
         private void SwapTabPages(TabPage tp1, TabPage tp2)
         {
-            int index1 = this.TabPages.IndexOf(tp1);
-            int index2 = this.TabPages.IndexOf(tp2);
+            int index1 = TabPages.IndexOf(tp1);
+            int index2 = TabPages.IndexOf(tp2);
 
-            this.TabPages[index1] = tp2;
-            this.TabPages[index2] = tp1;
+            TabPages[index1] = tp2;
+            TabPages[index2] = tp1;
         }
 
         /// <summary>
@@ -256,17 +256,17 @@ namespace CincoVertice.UI.Controls
         /// <param name="e">e</param>
         private void ParentForm_MdiChildActivate(object sender, EventArgs e)
         {
-            if (this.DesignMode)
+            if (DesignMode)
             {
                 return;
             }
 
-            Form parent = (Form)this.Parent;
+            Form parent = (Parent as Form)!;
 
             if (parent.ActiveMdiChild == null)
             {
                 // There is no MDI Child. Hide the tab control
-                this.Visible = false;
+                Visible = false;
             }
             else
             {
@@ -281,7 +281,7 @@ namespace CincoVertice.UI.Controls
                     TabPage tp = new TabPage(tabForm.Text);
 
                     // Tab page points to the MDI Child
-                    tp.Tag = new TabPageTag() { OwnerForm = tabForm, Menu = tabForm.ContextMenuStrip };
+                    tp.Tag = new TabPageTag() { OwnerForm = tabForm, Menu = tabForm.ContextMenuStrip! };
                     tabForm.ContextMenuStrip = null;
 
                     tp.Parent = this;
@@ -290,79 +290,78 @@ namespace CincoVertice.UI.Controls
                     tabForm.Tag = tp;
 
                     // To dispose the tab in case the form is closed programmaticaly
-                    tabForm.FormClosed += new FormClosedEventHandler(this.ActiveMdiChild_FormClosed);
+                    tabForm.FormClosed += new FormClosedEventHandler(ActiveMdiChild_FormClosed!);
 
                     // To update the tab text in case the form text is updated after the tab is created.
-                    tabForm.TextChanged += new EventHandler(this.ActiveMdiChild_Text);
+                    tabForm.TextChanged += new EventHandler(ActiveMdiChild_Text!);
 
-                    this.SelectedTab = tp;
+                    SelectedTab = tp;
                 }
                 else
                 {
-                    this.SelectedTab = (TabPage)parent.ActiveMdiChild.Tag;
+                    SelectedTab = (TabPage)parent.ActiveMdiChild.Tag;
                 }
 
                 // Make tabs visible since it is not empty
-                if (!this.Visible)
+                if (!Visible)
                 {
-                    this.Visible = true;
+                    Visible = true;
                 }
             }
         }
 
         private void ActiveMdiChild_Text(object sender, EventArgs e)
         {
-            if (this.DesignMode)
+            if (DesignMode)
             {
                 return;
             }
 
-            Form form = sender as Form;
+            Form form = (sender as Form)!;
 
-            if (form.Tag != null)
+            if (form!.Tag != null)
             {
-                (form.Tag as TabPage).Text = form.Text;
+                (form.Tag as TabPage)!.Text = form.Text;
             }
         }
 
         private void ActiveMdiChild_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (this.DesignMode)
+            if (DesignMode)
             {
                 return;
             }
 
             // Destroy the corresponding tab pages
-            ((sender as Form).Tag as TabPage).Dispose();
+            ((sender as Form)!.Tag as TabPage)?.Dispose();
         }
 
         private void CtlTabs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.DesignMode)
+            if (DesignMode)
             {
                 return;
             }
 
-            if ((this.SelectedTab != null) && (this.SelectedTab.Tag != null))
+            if (SelectedTab != null && SelectedTab.Tag != null)
             {
                 // SETREDRAW = false
-                SendMessage(this.Handle, WMSETREDRAW, false, 0);
+                SendMessage(Handle, WMSETREDRAW, false, 0);
 
-                ((TabPageTag)this.SelectedTab.Tag).OwnerForm.Select();
+                ((TabPageTag)SelectedTab.Tag).OwnerForm.Select();
 
                 // SETREDRAW = true
-                SendMessage(this.Handle, WMSETREDRAW, true, 0);
+                SendMessage(Handle, WMSETREDRAW, true, 0);
 
-                // this.Invalidate(true);
-                // this.Update();
+                // To decide whether using Invalidate(true) or this.Update() read
                 // https://blogs.msdn.microsoft.com/subhagpo/2005/02/22/whats-the-difference-between-control-invalidate-control-update-and-control-refresh/
-                this.Refresh();
+                Refresh();
             }
         }
 
         private void CtlTabs_DrawItem(object sender, DrawItemEventArgs e)
         {
-            if (this.DesignMode)
+            if (DesignMode)
             {
                 return;
             }
@@ -370,19 +369,19 @@ namespace CincoVertice.UI.Controls
             Brush brushBackground;
             Brush brushText;
 
-            TabPage page = this.TabPages[e.Index];
+            TabPage page = TabPages[e.Index];
 
             Rectangle paddedBounds = e.Bounds;
-            int yOffset = (e.State == DrawItemState.Selected) ? -1 : 1;
-            yOffset += (paddedBounds.Height / 2) - (int)(e.Font.GetHeight() / 2);
+            int yOffset = e.State == DrawItemState.Selected ? -1 : 1;
+            yOffset += paddedBounds.Height / 2 - (int)(e.Font!.GetHeight() / 2);
             paddedBounds.Offset(1, yOffset);
 
             if (e.Index == 0)
             {
                 paddedBounds.Offset(14, 0);
 
-                brushBackground = this.brushMain;
-                brushText = this.brushLightText;
+                brushBackground = brushMain;
+                brushText = brushLightText;
 
                 e.Graphics.FillRectangle(brushBackground, e.Bounds);
             }
@@ -450,22 +449,6 @@ namespace CincoVertice.UI.Controls
         }
 
         /// <summary>
-        /// Used for the TabPage tag, to hold more than one object.
-        /// </summary>
-        public class TabPageTag
-        {
-            /// <summary>
-            /// Gets or sets form linked to the TabPage.
-            /// </summary>
-            public Form OwnerForm { get; set; } = null;
-
-            /// <summary>
-            /// Gets or sets menu linked to the TabPage.
-            /// </summary>
-            public ContextMenuStrip Menu { get; set; } = null;
-        }
-
-        /// <summary>
         /// OpenMDI. Uses Generics.
         /// </summary>
         /// <typeparam name="T">Form </typeparam>
@@ -474,30 +457,29 @@ namespace CincoVertice.UI.Controls
         public Form OpenMDI<T>(bool multipleInstances)
             where T : Form, new()
         {
-            Form parentForm = this.Parent as Form;
+            Form parentForm = (Parent as Form)!;
 
-            if (multipleInstances == false)
+            if (multipleInstances)
             {
-                // Look if the form is open
-                foreach (Form f in parentForm.MdiChildren)
-                {
-                    // same as if (f.GetType() == typeof(T))
-                    if (f is T)
-                    {
-                        // Found an open instance. If minimized, maximize and activate
-                        if (f.WindowState == FormWindowState.Minimized)
-                        {
-                            f.WindowState = FormWindowState.Maximized;
-                        }
+                var openMdiChilden = (Parent as Form)?.MdiChildren.OfType<T>().FirstOrDefault();
 
-                        f.Activate();
-                        return f;
+                if (openMdiChilden != null)
+                {
+                    if (openMdiChilden.WindowState == FormWindowState.Minimized)
+                    {
+                        openMdiChilden.WindowState = FormWindowState.Maximized;
                     }
+
+                    openMdiChilden.Activate();
+                    return openMdiChilden;
                 }
             }
 
-            T newForm = new T();
-            newForm.MdiParent = parentForm;
+            // Create nform
+            T newForm = new()
+            {
+                MdiParent = parentForm
+            };
             newForm.Show();
 
             return newForm;
