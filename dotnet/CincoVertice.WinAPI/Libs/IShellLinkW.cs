@@ -2,6 +2,7 @@
 // Copyright (c) 2018 - 2021 Ricardo Gonzalez-Garza. All Rights Reserved.
 // Contact ricardo@5vertice.com for additional information.
 // </copyright>
+using CincoVertice.WinAPI.Enums;
 using System.Runtime.InteropServices;
 
 namespace CincoVertice.WinAPI.Libs
@@ -58,10 +59,22 @@ namespace CincoVertice.WinAPI.Libs
             /// <summary>
             /// Gets the path and file name of the target of a Shell link object.
             /// </summary>
-            /// <param name="pszFile">The address of a buffer that receives the path and file name of the target of the Shell link object.</param>
-            /// <param name="cch">The size, in characters, of the buffer pointed to by the pszFile parameter, including the terminating null character. The maximum path size that can be returned is MAX_PATH. This parameter is commonly set by calling ARRAYSIZE(pszFile). The ARRAYSIZE macro is defined in Winnt.h.</param>
-            /// <param name="pfd">A pointer to a WIN32_FIND_DATA structure that receives information about the target of the Shell link object. If this parameter is NULL, then no additional information is returned.</param>
-            /// <param name="fFlags">Flags that specify the type of path information to retrieve. This parameter can be a combination of the following values.</param>
+            /// <param name="pszFile">
+            ///     The address of a buffer that receives the path and file name of the target of the Shell link object.
+            /// </param>
+            /// <param name="cch">
+            ///     The size, in characters, of the buffer pointed to by the pszFile parameter, including the
+            ///     terminating null character. The maximum path size that can be returned is MAX_PATH. This parameter
+            ///     is commonly set by calling ARRAYSIZE(pszFile). The ARRAYSIZE macro is defined in Winnt.h.
+            /// </param>
+            /// <param name="pfd">
+            ///     A pointer to a WIN32_FIND_DATA structure that receives information about the target of the Shell
+            ///     link object. If this parameter is NULL, then no additional information is returned.
+            /// </param>
+            /// <param name="fFlags">
+            ///     Flags that specify the type of path information to retrieve. This parameter can be a combination of
+            ///     the following values.
+            /// </param>
             [PreserveSig]
             void GetPath(
                 [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex = 1)] out string pszFile,
@@ -87,7 +100,9 @@ namespace CincoVertice.WinAPI.Libs
             /// Gets the description string for a Shell link object.
             /// </summary>
             /// <param name="pszName">A pointer to the buffer that receives the description string.</param>
-            /// <param name="cch">The maximum number of characters to copy to the buffer pointed to by the pszName parameter.</param>
+            /// <param name="cch">
+            ///     The maximum number of characters to copy to the buffer pointed to by the pszName parameter.
+            /// </param>
             [PreserveSig]
             void GetDescription(
                 [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex = 1)] out string pszName,
@@ -105,7 +120,10 @@ namespace CincoVertice.WinAPI.Libs
             /// Gets the name of the working directory for a Shell link object.
             /// </summary>
             /// <param name="pszDir">The address of a buffer that receives the name of the working directory.</param>
-            /// <param name="cch">The maximum number of characters to copy to the buffer pointed to by the pszDir parameter. The name of the working directory is truncated if it is longer than the maximum specified by this parameter.</param>
+            /// <param name="cch">
+            ///     The maximum number of characters to copy to the buffer pointed to by the pszDir parameter. The name
+            ///     of the working directory is truncated if it is longer than the maximum specified by this parameter.
+            /// </param>
             [PreserveSig]
             void GetWorkingDirectory(
                 [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex = 1)] out string pszDir,
@@ -114,7 +132,9 @@ namespace CincoVertice.WinAPI.Libs
             /// <summary>
             /// Sets the name of the working directory for a Shell link object.
             /// </summary>
-            /// <param name="pszDir">The address of a buffer that contains the name of the new working directory.</param>
+            /// <param name="pszDir">
+            ///     The address of a buffer that contains the name of the new working directory.
+            /// </param>
             [PreserveSig]
             void SetWorkingDirectory(
                 [MarshalAs(UnmanagedType.LPWStr)] string pszDir);
@@ -122,8 +142,17 @@ namespace CincoVertice.WinAPI.Libs
             /// <summary>
             /// Gets the command-line arguments associated with a Shell link object.
             /// </summary>
-            /// <param name="pszArgs">A pointer to the buffer that, when this method returns successfully, receives the command-line arguments.</param>
-            /// <param name="cch">The maximum number of characters that can be copied to the buffer supplied by the pszArgs parameter. In the case of a Unicode string, there is no limitation on maximum string length. In the case of an ANSI string, the maximum length of the returned string varies depending on the version of Windows—MAX_PATH prior to Windows 2000 and INFOTIPSIZE (defined in Commctrl.h) in Windows 2000 and later.</param>
+            /// <param name="pszArgs">
+            ///     A pointer to the buffer that, when this method returns successfully, receives the command-line
+            ///     arguments.
+            /// </param>
+            /// <param name="cch">
+            ///     The maximum number of characters that can be copied to the buffer supplied by the pszArgs parameter.
+            ///     In the case of a Unicode string, there is no limitation on maximum string length. In the case of an
+            ///     ANSI string, the maximum length of the returned string varies depending on the version of
+            ///     Windows—MAX_PATH prior to Windows 2000 and INFOTIPSIZE (defined in Commctrl.h) in Windows 2000 and
+            ///     later.
+            /// </param>
             [PreserveSig]
             void GetArguments(
                 [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex = 1)] out string pszArgs,
@@ -132,7 +161,12 @@ namespace CincoVertice.WinAPI.Libs
             /// <summary>
             /// Sets the command-line arguments for a Shell link object.
             /// </summary>
-            /// <param name="pszArgs">A pointer to a buffer that contains the new command-line arguments. In the case of a Unicode string, there is no limitation on maximum string length. In the case of an ANSI string, the maximum length of the returned string varies depending on the version of Windows—MAX_PATH prior to Windows 2000 and INFOTIPSIZE (defined in Commctrl.h) in Windows 2000 and later.</param>
+            /// <param name="pszArgs">
+            ///     A pointer to a buffer that contains the new command-line arguments. In the case of a Unicode string,
+            ///     there is no limitation on maximum string length. In the case of an ANSI string, the maximum length
+            ///     of the returned string varies depending on the version of Windows—MAX_PATH prior to Windows 2000 and
+            ///     INFOTIPSIZE (defined in Commctrl.h) in Windows 2000 and later.
+            /// </param>
             [PreserveSig]
             void SetArguments(
                 [MarshalAs(UnmanagedType.LPWStr)] string pszArgs);
@@ -140,14 +174,22 @@ namespace CincoVertice.WinAPI.Libs
             /// <summary>
             /// Gets the keyboard shortcut (hot key) for a Shell link object.
             /// </summary>
-            /// <param name="pwHotkey">The address of the keyboard shortcut. The virtual key code is in the low-order byte, and the modifier flags are in the high-order byte. The modifier flags can be a combination of the following values.</param>
+            /// <param name="pwHotkey">
+            ///     The address of the keyboard shortcut. The virtual key code is in the low-order byte, and the
+            ///     modifier flags are in the high-order byte. The modifier flags can be a combination of the following
+            ///     values.
+            /// </param>
             [PreserveSig]
             void GetHotkey(out ushort pwHotkey);
 
             /// <summary>
             /// Sets a keyboard shortcut (hot key) for a Shell link object.
             /// </summary>
-            /// <param name="wHotkey">The new keyboard shortcut. The virtual key code is in the low-order byte, and the modifier flags are in the high-order byte. The modifier flags can be a combination of the values specified in the description of the IShellLink::GetHotkey method.</param>
+            /// <param name="wHotkey">
+            ///     The new keyboard shortcut. The virtual key code is in the low-order byte, and the modifier flags are
+            ///     in the high-order byte. The modifier flags can be a combination of the values specified in the
+            ///     description of the IShellLink::GetHotkey method.
+            /// </param>
             [PreserveSig]
             void SetHotkey(ushort wHotkey);
 
@@ -156,20 +198,25 @@ namespace CincoVertice.WinAPI.Libs
             /// </summary>
             /// <param name="piShowCmd">A pointer to the command. The following commands are supported.</param>
             [PreserveSig]
-            void GetShowCmd(out User32.ShowCmd piShowCmd);
+            void GetShowCmd(out ShowCmd piShowCmd);
 
             /// <summary>
-            /// Sets the show command for a Shell link object. The show command sets the initial show state of the window.
+            ///     Sets the show command for a Shell link object. The show command sets the initial show state of the
+            ///     window.
             /// </summary>
             /// <param name="iShowCmd">Command. SetShowCmd accepts one of the following ShowWindow commands.</param>
             [PreserveSig]
-            void SetShowCmd(User32.ShowCmd iShowCmd);
+            void SetShowCmd(ShowCmd iShowCmd);
 
             /// <summary>
             /// Gets the location (path and index) of the icon for a Shell link object.
             /// </summary>
-            /// <param name="pszIconPath">The address of a buffer that receives the path of the file containing the icon.</param>
-            /// <param name="cch">The maximum number of characters to copy to the buffer pointed to by the pszIconPath parameter.</param>
+            /// <param name="pszIconPath">
+            ///     The address of a buffer that receives the path of the file containing the icon.
+            /// </param>
+            /// <param name="cch">
+            ///     The maximum number of characters to copy to the buffer pointed to by the pszIconPath parameter.
+            /// </param>
             /// <param name="piIcon">The address of a value that receives the index of the icon.</param>
             [PreserveSig]
             void GetIconLocation(
@@ -180,7 +227,9 @@ namespace CincoVertice.WinAPI.Libs
             /// <summary>
             /// Sets the location (path and index) of the icon for a Shell link object.
             /// </summary>
-            /// <param name="pszIconPath">The address of a buffer to contain the path of the file containing the icon.</param>
+            /// <param name="pszIconPath">
+            ///     The address of a buffer to contain the path of the file containing the icon.
+            /// </param>
             /// <param name="iIcon">The index of the icon.</param>
             [PreserveSig]
             void SetIconLocation(
@@ -190,7 +239,10 @@ namespace CincoVertice.WinAPI.Libs
             /// <summary>
             /// Sets the relative path to the Shell link object.
             /// </summary>
-            /// <param name="pszPathRel">The address of a buffer that contains the fully-qualified path of the shortcut file, relative to which the shortcut resolution should be performed. It should be a file name, not a folder name.</param>
+            /// <param name="pszPathRel">
+            ///     The address of a buffer that contains the fully-qualified path of the shortcut file, relative to
+            ///     which the shortcut resolution should be performed. It should be a file name, not a folder name.
+            /// </param>
             /// <param name="dwReserved">Reserved. Set this parameter to zero.</param>
             [PreserveSig]
             void SetRelativePath(
@@ -200,7 +252,10 @@ namespace CincoVertice.WinAPI.Libs
             /// <summary>
             /// Attempts to find the target of a Shell link, even if it has been moved or renamed.
             /// </summary>
-            /// <param name="hwnd">A handle to the window that the Shell will use as the parent for a dialog box. The Shell displays the dialog box if it needs to prompt the user for more information while resolving a Shell link.</param>
+            /// <param name="hwnd">
+            ///     A handle to the window that the Shell will use as the parent for a dialog box. The Shell displays
+            ///     the dialog box if it needs to prompt the user for more information while resolving a Shell link.
+            /// </param>
             /// <param name="fFlags">Action flags. This parameter can be a combination of the following values.</param>
             [PreserveSig]
             void Resolve(nint hwnd, uint fFlags);
@@ -228,7 +283,11 @@ namespace CincoVertice.WinAPI.Libs
         /// <param name="description">Shortcut key description.</param>
         /// <param name="iconLocation">Icon location. Ignored if null or empty.</param>
         /// <returns>true if successful, otherwise false.</returns>
-        public static bool CreateShortcut(string shortcutPath, string targetPath, string description, string iconLocation = null)
+        public static bool CreateShortcut(
+            string shortcutPath,
+            string targetPath,
+            string description,
+            string iconLocation = null!)
         {
             return CreateShortcut(shortcutPath, targetPath, string.Empty, string.Empty, description, iconLocation);
         }
@@ -242,9 +301,19 @@ namespace CincoVertice.WinAPI.Libs
         /// <param name="workingDirectory">Sets the name of the working directory for a Shell link object.</param>
         /// <param name="description">Shortcut key description.</param>
         /// <param name="iconLocation">Icon location. Ignored if null or empty.</param>
-        /// <param name="showcmd">Sets the show command for a Shell link object. The show command sets the initial show state of the window.</param>
+        /// <param name="showcmd">
+        ///     Sets the show command for a Shell link object. The show command sets the initial show state of the
+        ///     window.
+        /// </param>
         /// <returns>true if successful, otherwise false.</returns>
-        public static bool CreateShortcut(string shortcutPath, string targetPath, string arguments, string workingDirectory, string description, string iconLocation = null, User32.ShowCmd showcmd = User32.ShowCmd.SW_SHOWNORMAL)
+        public static bool CreateShortcut(
+            string shortcutPath,
+            string targetPath,
+            string arguments,
+            string workingDirectory,
+            string description,
+            string iconLocation = null!,
+            ShowCmd showcmd = ShowCmd.SW_SHOWNORMAL)
         {
             try
             {
