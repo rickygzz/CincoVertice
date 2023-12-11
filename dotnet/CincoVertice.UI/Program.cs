@@ -1,3 +1,4 @@
+using CincoVertice.WinAPI.Libs;
 using System.Diagnostics;
 using VerticeLib;
 
@@ -40,7 +41,7 @@ namespace CincoVertice.UI
                     //    "The application is currently running",
                     //    process.ProcessName + '\n' + process.MainModule!.FileName);
 
-                    // WinAPI.User32.SetForegroundWindow(process.MainWindowHandle);
+                    User32.SetForegroundWindow(process.MainWindowHandle);
 
                     return true;
                 }

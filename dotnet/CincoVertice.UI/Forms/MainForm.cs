@@ -1,6 +1,6 @@
 using CincoVertice.WinAPI;
+using CincoVertice.WinAPI.Enums;
 using CincoVertice.WinAPI.Hotkey;
-using CincoVertice.WinAPI.Libs;
 
 namespace VerticeLib
 {
@@ -18,8 +18,8 @@ namespace VerticeLib
             var hotkey = new Hotkey();
 
             hotkey.RegisterHotKey(new HotKeyData(
-                User32.FSModifiers.MOD_CONTROL | User32.FSModifiers.MOD_ALT,
-                User32.KeyCode.D0,
+                FSModifiers.MOD_CONTROL | FSModifiers.MOD_ALT,
+                KeyCode.D0,
                 HK_KeyPressed));
 
             _mouse = new MouseMoveSimulator();
@@ -40,6 +40,11 @@ namespace VerticeLib
             }
 
             _mouse.Stop();
+        }
+
+        private void MnuAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("CincoVertice");
         }
     }
 }
