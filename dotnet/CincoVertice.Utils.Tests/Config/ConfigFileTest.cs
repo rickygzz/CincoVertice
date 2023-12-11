@@ -1,4 +1,4 @@
-﻿using VerticeLib.Utils.Config;
+﻿using CincoVertice.Utils.Config;
 using Xunit;
 using Xunit.Abstractions;
 

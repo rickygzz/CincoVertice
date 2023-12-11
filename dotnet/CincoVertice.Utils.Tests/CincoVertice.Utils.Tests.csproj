@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\VerticeLib\.editorconfig" Link=".editorconfig" />
+    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VerticeLib.Utils\CincoVertice.Utils.csproj" />
+    <ProjectReference Include="..\CincoVertice.Utils\CincoVertice.Utils.csproj" />
   </ItemGroup>
 
 </Project>

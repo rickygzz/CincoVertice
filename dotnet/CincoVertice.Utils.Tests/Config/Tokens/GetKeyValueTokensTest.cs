@@ -1,6 +1,5 @@
-﻿using VerticeLib.Utils.Config;
-using VerticeLib.Utils.Config.Tokens;
-using VerticeLib.Utils.IO;
+﻿using CincoVertice.Utils.Config;
+using CincoVertice.Utils.Config.Tokens;
 using Xunit;
 
 namespace CincoVertice.Utils.Tests.Config.Tokens

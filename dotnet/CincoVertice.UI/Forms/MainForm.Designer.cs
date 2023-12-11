@@ -1,4 +1,4 @@
-﻿namespace VerticeLib
+﻿namespace CincoVertice
 {
     partial class MainForm
     {

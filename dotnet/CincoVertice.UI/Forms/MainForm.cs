@@ -2,7 +2,7 @@ using CincoVertice.WinAPI;
 using CincoVertice.WinAPI.Enums;
 using CincoVertice.WinAPI.Hotkey;
 
-namespace VerticeLib
+namespace CincoVertice
 {
     public partial class MainForm : Form
     {

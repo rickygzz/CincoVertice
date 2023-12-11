@@ -1,4 +1,4 @@
-﻿using VerticeLib.Utils.Strings;
+﻿using CincoVertice.Utils.Strings;
 using Xunit;
 
 namespace CincoVertice.Utils.Tests.Strings

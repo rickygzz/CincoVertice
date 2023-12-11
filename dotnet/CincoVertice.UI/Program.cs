@@ -1,6 +1,5 @@
 using CincoVertice.WinAPI.Libs;
 using System.Diagnostics;
-using VerticeLib;
 
 namespace CincoVertice.UI
 {
