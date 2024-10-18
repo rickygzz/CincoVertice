@@ -1,4 +1,6 @@
-﻿namespace CincoVertice.Utils.Lexer
+﻿using CincoVertice.Utils.Lexer.Models;
+
+namespace CincoVertice.Utils.Lexer
 {
     /// <summary>
     /// GenericLexer interface.
@@ -50,5 +52,12 @@
         /// <param name="index">Index to set CharIndex and CurrentChar.
         /// <para>If index is outside this.text boundaries, CharIndex = this.text.Length and CurrentChar = '\0'.</para></param>
         public void Char(int index);
+
+        /// <summary>
+        /// Gets position for a given charIndex.
+        /// </summary>
+        /// <param name="charIndex">Character index.</param>
+        /// <returns>Returns the positoin for the given charIndex.</returns>
+        public Position Position(int charIndex);
     }
 }

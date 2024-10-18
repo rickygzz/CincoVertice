@@ -1,4 +1,4 @@
-﻿using VerticeLib.Utils.Config;
+﻿using CincoVertice.Utils.Config;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -203,6 +203,30 @@ keyFloatE = 0.5
 keyFloatF = 1.";
 
             Assert.Equal(expectedText, savedtext);
+        }
+
+        [Fact]
+        public void ConfigFile_SetsNewValueForGivenKey_KeyStoresNewValue()
+        {
+            // Arrange
+            // Create test configuration file.
+            string content = @"keyA =    1   
+keyB =     2.5       
+   keyC =     This is a string value        ";
+
+            string file = Environment.CurrentDirectory + '\\' + "TestIOConfigFile.conf";
+            File.WriteAllText(file, content);
+
+            // Act & assert
+            ConfigFile config = new(file);
+            Assert.Equal("1", config.Items.GetValue("keyA"));
+
+            // Act & assert
+            config.Items.Set("keyA", "2");
+            Assert.Equal("2", config.Items.GetValue("keyA"));
+
+            // Clean up
+            File.Delete(file);
         }
     }
 }

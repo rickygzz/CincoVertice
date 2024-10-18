@@ -2,10 +2,8 @@
 // Copyright (c) 2018 - 2021 Ricardo Gonzalez-Garza. All Rights Reserved.
 // Contact ricardo@5vertice.com for additional information.
 // </copyright>
-using System;
-using System.Collections.Generic;
+using CincoVertice.WinAPI.Enums;
 using System.Runtime.InteropServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CincoVertice.WinAPI.Libs
 {
@@ -291,6 +289,17 @@ namespace CincoVertice.WinAPI.Libs
         public static extern nint GetActiveWindow();
 
         /// <summary>
+        /// Determines whether the specified window is minimized (iconic).
+        /// </summary>
+        /// <param name="hWnd">A handle to the window to be tested.</param>
+        /// <returns>
+        ///     If the window is iconic, the return value is nonzero. If the window is not iconic, the return value is
+        ///     zero.
+        /// </returns>
+        [DllImport("user32.dll")]
+        public static extern bool IsIconic(IntPtr hWnd);
+
+        /// <summary>
         /// Activates a window. The window must be attached to the calling thread's message queue.
         /// <para>Check SetForegroundWindow.</para>
         /// <para>
@@ -310,7 +319,7 @@ namespace CincoVertice.WinAPI.Libs
         ///     If the function fails, the return value is NULL. To get extended error information, call GetLastError.
         /// </returns>
         [DllImport("user32.dll")]
-        public static extern nint SetActiveWindow(nint hWnd);
+        public static extern nint SetActiveWindow(IntPtr hWnd);
 
         /// <summary>
         /// Sends the specified message to a window or windows. The SendMessage function calls the window procedure for
@@ -338,7 +347,7 @@ namespace CincoVertice.WinAPI.Libs
         ///     The return value specifies the result of the message processing; it depends on the message sent.
         /// </returns>
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int SendMessage(nint hWnd, Constants.WM wMsg, nint wParam, nint lParam);
+        public static extern int SendMessage(nint hWnd, WM wMsg, nint wParam, nint lParam);
 
         /// <summary>
         /// Sends the specified message to a window or windows. The SendMessage function calls the window procedure for
@@ -366,7 +375,7 @@ namespace CincoVertice.WinAPI.Libs
         ///     The return value specifies the result of the message processing; it depends on the message sent.
         /// </returns>
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int SendMessage(nint hWnd, Constants.WM wMsg, int wParam, int lParam);
+        public static extern int SendMessage(nint hWnd, WM wMsg, int wParam, int lParam);
 
         /// <summary>
         /// Sends the specified message to a window or windows. The SendMessage function calls the window procedure for
@@ -394,7 +403,24 @@ namespace CincoVertice.WinAPI.Libs
         ///     The return value specifies the result of the message processing; it depends on the message sent.
         /// </returns>
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int SendMessage(nint hWnd, Constants.WM wMsg, int wParam, ref POINT lParam);
+        public static extern int SendMessage(nint hWnd, WM wMsg, int wParam, ref POINT lParam);
+
+        /// <summary>
+        /// Sets the specified window's show state.
+        /// </summary>
+        /// <param name="hWnd">A handle to the window.</param>
+        /// <param name="nCmdShow">
+        ///     Controls how the window is to be shown. This parameter is ignored the first time an application calls
+        ///     ShowWindow, if the program that launched the application provides a STARTUPINFO structure. Otherwise,
+        ///     the first time ShowWindow is called, the value should be the value obtained by the WinMain function in
+        ///     its nCmdShow parameter. In subsequent calls, this parameter can be one of the following values.
+        /// </param>
+        /// <returns>
+        ///     If the window was previously visible, the return value is nonzero. If the window was previously hidden,
+        ///     the return value is zero.
+        /// </returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool ShowWindow(IntPtr hWnd, SW nCmdShow);
 
         /// <summary>
         /// Retrieves a handle to the window that contains the specified point.
@@ -664,7 +690,7 @@ namespace CincoVertice.WinAPI.Libs
         ///     A virtual-key code. The code must be a value in the range 1 to 254. If the dwFlags member specifies
         ///     KEYEVENTF_UNICODE, wVk must be 0.
         /// </summary>
-        public User32.KeyCode WVk;
+        public KeyCode WVk;
 
         /// <summary>
         ///     A hardware scan code for the key. If dwFlags specifies KEYEVENTF_UNICODE, wScan specifies a Unicode

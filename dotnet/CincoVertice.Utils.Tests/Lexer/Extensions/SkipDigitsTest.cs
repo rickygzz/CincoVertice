@@ -1,5 +1,5 @@
-﻿using VerticeLib.Utils.Lexer;
-using VerticeLib.Utils.Lexer.Extensions;
+﻿using CincoVertice.Utils.Lexer;
+using CincoVertice.Utils.Lexer.Extensions;
 using Xunit;
 
 namespace CincoVertice.Utils.Tests.Lexer.Extensions

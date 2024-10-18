@@ -1,4 +1,4 @@
-﻿using VerticeLib.Utils.Phone;
+﻿using CincoVertice.Utils.Phone;
 using Xunit;
 
 namespace CincoVertice.Utils.Tests.Phone

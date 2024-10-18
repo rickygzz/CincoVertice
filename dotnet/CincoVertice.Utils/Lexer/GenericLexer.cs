@@ -1,4 +1,8 @@
-﻿namespace CincoVertice.Utils.Lexer
+﻿using CincoVertice.Utils.Lexer.Extensions;
+using CincoVertice.Utils.Lexer.Models;
+using System.Collections.Generic;
+
+namespace CincoVertice.Utils.Lexer
 {
     public class GenericLexer : IGenericLexer
     {
@@ -8,6 +12,8 @@
         protected Process _processCallback;
 
         private string text = string.Empty;
+
+        private List<Line> lines = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GenericLexer"/> class.
@@ -72,12 +78,42 @@
             {
                 text = value;
 
+                SetLinesList();
+
                 Char(0);
 
                 if (_processCallback != null)
                 {
                     _processCallback();
                 }
+            }
+        }
+
+        private void SetLinesList()
+        {
+            lines.Clear();
+
+            Char(0);
+            int charStart = 0;
+            int charEnd = -1;
+            while (CurrentChar != '\0')
+            {
+                if (this.IsEOL())
+                {
+                    this.SkipOneEOL();
+
+                    charEnd = CharIndex - 1;
+
+                    lines.Add(new Line() { CharStart = charStart, CharEnd = charEnd });
+
+                    charStart = CharIndex;
+                }
+                NextChar();
+            }
+
+            if (CharIndex > charEnd)
+            {
+                lines.Add(new Line() { CharStart = charStart, CharEnd = CharIndex });
             }
         }
 
@@ -145,6 +181,23 @@
 
                 CurrentChar = '\0';
             }
+        }
+
+        public Position Position(int charIndex)
+        {
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if (charIndex <= lines[i].CharEnd)
+                {
+                    return new Position
+                    {
+                        Line = i + 1,
+                        Column = charIndex - lines[i].CharStart + 1,
+                    };
+                }
+            }
+
+            return new Position { Line = lines.Count, Column = lines[lines.Count - 1].CharEnd };
         }
     }
 }

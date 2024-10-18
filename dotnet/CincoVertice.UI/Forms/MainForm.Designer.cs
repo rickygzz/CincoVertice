@@ -1,4 +1,4 @@
-﻿namespace VerticeLib
+﻿namespace CincoVertice
 {
     partial class MainForm
     {
@@ -32,13 +32,16 @@
             mdiTab1 = new CincoVertice.UI.Controls.MdiTab.MdiTab();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            menu = new MenuStrip();
+            mnuAbout = new ToolStripMenuItem();
             mdiTab1.SuspendLayout();
+            menu.SuspendLayout();
             SuspendLayout();
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(12, 56);
+            checkBox1.Location = new Point(23, 64);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(83, 19);
             checkBox1.TabIndex = 0;
@@ -55,7 +58,7 @@
             mdiTab1.Dock = DockStyle.Top;
             mdiTab1.DrawMode = TabDrawMode.OwnerDrawFixed;
             mdiTab1.ItemSize = new Size(0, 30);
-            mdiTab1.Location = new Point(0, 0);
+            mdiTab1.Location = new Point(0, 24);
             mdiTab1.MaximumSize = new Size(800, 31);
             mdiTab1.Name = "mdiTab1";
             mdiTab1.Padding = new Point(18, 3);
@@ -83,6 +86,22 @@
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // menu
+            // 
+            menu.Items.AddRange(new ToolStripItem[] { mnuAbout });
+            menu.Location = new Point(0, 0);
+            menu.Name = "menu";
+            menu.Size = new Size(800, 24);
+            menu.TabIndex = 2;
+            menu.Text = "menuStrip1";
+            // 
+            // mnuAbout
+            // 
+            mnuAbout.Name = "mnuAbout";
+            mnuAbout.Size = new Size(52, 20);
+            mnuAbout.Text = "&About";
+            mnuAbout.Click += MnuAbout_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -90,10 +109,14 @@
             ClientSize = new Size(800, 450);
             Controls.Add(mdiTab1);
             Controls.Add(checkBox1);
+            Controls.Add(menu);
+            MainMenuStrip = menu;
             Name = "MainForm";
             Text = "5Vertice";
             Load += MainForm_Load;
             mdiTab1.ResumeLayout(false);
+            menu.ResumeLayout(false);
+            menu.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -104,5 +127,7 @@
         private CincoVertice.UI.Controls.MdiTab.MdiTab mdiTab1;
         private TabPage tabPage1;
         private TabPage tabPage2;
+        private MenuStrip menu;
+        private ToolStripMenuItem mnuAbout;
     }
 }

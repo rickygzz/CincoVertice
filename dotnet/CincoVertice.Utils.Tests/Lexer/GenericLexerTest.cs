@@ -1,4 +1,5 @@
-﻿using VerticeLib.Utils.Lexer;
+﻿using CincoVertice.Utils.Lexer;
+using CincoVertice.Utils.Lexer.Models;
 using Xunit;
 
 namespace CincoVertice.Utils.Tests.Lexer
@@ -101,6 +102,126 @@ namespace CincoVertice.Utils.Tests.Lexer
             lexer.PrevChar();
             Assert.Equal(testStr[testStr.Length - 1], lexer.CurrentChar);
             Assert.Equal(testStr.Length - 1, lexer.CharIndex);
+        }
+
+        [Fact]
+        public void Position_FirstTest()
+        {
+            // Arrange
+            GenericLexer lexer = new("abc\ndef\nghi");
+
+            // Act & Assert
+            Position pos = lexer.Position(0);
+            Assert.Equal(1, pos.Line);
+            Assert.Equal(1, pos.Column);
+
+            pos = lexer.Position(1);
+            Assert.Equal(1, pos.Line);
+            Assert.Equal(2, pos.Column);
+
+            pos = lexer.Position(2);
+            Assert.Equal(1, pos.Line);
+            Assert.Equal(3, pos.Column);
+
+            pos = lexer.Position(3);
+            Assert.Equal(1, pos.Line);
+            Assert.Equal(4, pos.Column);
+
+            pos = lexer.Position(4);
+            Assert.Equal(2, pos.Line);
+            Assert.Equal(1, pos.Column);
+
+            pos = lexer.Position(5);
+            Assert.Equal(2, pos.Line);
+            Assert.Equal(2, pos.Column);
+
+            pos = lexer.Position(6);
+            Assert.Equal(2, pos.Line);
+            Assert.Equal(3, pos.Column);
+
+            pos = lexer.Position(7);
+            Assert.Equal(2, pos.Line);
+            Assert.Equal(4, pos.Column);
+
+            pos = lexer.Position(8);
+            Assert.Equal(3, pos.Line);
+            Assert.Equal(1, pos.Column);
+
+            pos = lexer.Position(9);
+            Assert.Equal(3, pos.Line);
+            Assert.Equal(2, pos.Column);
+
+            pos = lexer.Position(10);
+            Assert.Equal(3, pos.Line);
+            Assert.Equal(3, pos.Column);
+
+            pos = lexer.Position(11);
+            Assert.Equal(3, pos.Line);
+            Assert.Equal(4, pos.Column);
+        }
+
+        [Fact]
+        public void Position_SecondTest()
+        {
+            // Arrange
+            GenericLexer lexer = new("abc\r\ndef\r\nghi");
+
+            // Act & Assert
+            Position pos = lexer.Position(0);
+            Assert.Equal(1, pos.Line);
+            Assert.Equal(1, pos.Column);
+
+            pos = lexer.Position(1);
+            Assert.Equal(1, pos.Line);
+            Assert.Equal(2, pos.Column);
+
+            pos = lexer.Position(2);
+            Assert.Equal(1, pos.Line);
+            Assert.Equal(3, pos.Column);
+
+            pos = lexer.Position(3);
+            Assert.Equal(1, pos.Line);
+            Assert.Equal(4, pos.Column);
+
+            pos = lexer.Position(4);
+            Assert.Equal(1, pos.Line);
+            Assert.Equal(5, pos.Column);
+
+            pos = lexer.Position(5);
+            Assert.Equal(2, pos.Line);
+            Assert.Equal(1, pos.Column);
+
+            pos = lexer.Position(6);
+            Assert.Equal(2, pos.Line);
+            Assert.Equal(2, pos.Column);
+
+            pos = lexer.Position(7);
+            Assert.Equal(2, pos.Line);
+            Assert.Equal(3, pos.Column);
+
+            pos = lexer.Position(8);
+            Assert.Equal(2, pos.Line);
+            Assert.Equal(4, pos.Column);
+
+            pos = lexer.Position(9);
+            Assert.Equal(2, pos.Line);
+            Assert.Equal(5, pos.Column);
+
+            pos = lexer.Position(10);
+            Assert.Equal(3, pos.Line);
+            Assert.Equal(1, pos.Column);
+
+            pos = lexer.Position(11);
+            Assert.Equal(3, pos.Line);
+            Assert.Equal(2, pos.Column);
+
+            pos = lexer.Position(12);
+            Assert.Equal(3, pos.Line);
+            Assert.Equal(3, pos.Column);
+
+            pos = lexer.Position(13);
+            Assert.Equal(3, pos.Line);
+            Assert.Equal(4, pos.Column);
         }
     }
 }

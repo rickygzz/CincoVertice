@@ -1,4 +1,5 @@
-﻿using CincoVertice.WinAPI.Libs;
+﻿using CincoVertice.WinAPI.Enums;
+using CincoVertice.WinAPI.Libs;
 using System.Runtime.InteropServices;
 
 namespace CincoVertice.WinAPI
@@ -21,7 +22,7 @@ namespace CincoVertice.WinAPI
             hInstance = Marshal.GetHINSTANCE(GetType().Module);
 
             windowClass.cbSize = (uint) Marshal.SizeOf(typeof(WNDCLASSEX));
-            windowClass.style = (uint) (Constants.CS.CS_HREDRAW | Constants.CS.CS_VREDRAW);
+            windowClass.style = (uint) (CS.CS_HREDRAW | CS.CS_VREDRAW);
             windowClass.cbClsExtra = 0;
             windowClass.cbWndExtra = 0;
             windowClass.hInstance = hInstance;
@@ -42,7 +43,7 @@ namespace CincoVertice.WinAPI
                 0,
                 className,
                 "NativeWindow",
-                (uint) Constants.WS.WS_EX_LEFT,
+                (uint) WS.WS_EX_LEFT,
                 0, 0, 0, 0,
                 IntPtr.Zero, // HWND_DESKTOP
                 IntPtr.Zero, // No menu

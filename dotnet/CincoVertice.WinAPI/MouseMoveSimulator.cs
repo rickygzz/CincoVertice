@@ -1,4 +1,5 @@
-﻿using CincoVertice.WinAPI.Libs;
+﻿using CincoVertice.WinAPI.Enums;
+using CincoVertice.WinAPI.Libs;
 
 namespace CincoVertice.WinAPI
 {
@@ -58,7 +59,7 @@ namespace CincoVertice.WinAPI
 
             InputSimulator.IncrementalMouseMove(point.X, point.Y, endX, endY, speed);
 
-            InputSimulator.SendKey(User32.KeyCode.VK_PRINT);
+            InputSimulator.SendKey(KeyCode.VK_PRINT);
         }
 
         public void Timer_Tick(object? sender)

@@ -1,4 +1,5 @@
-﻿using static CincoVertice.WinAPI.Libs.User32;
+﻿using CincoVertice.WinAPI.Enums;
+using static CincoVertice.WinAPI.Libs.User32;
 
 namespace CincoVertice.WinAPI.Hotkey
 {

@@ -1,5 +1,5 @@
-﻿using CincoVertice.WinAPI.Libs;
-using static CincoVertice.WinAPI.Libs.Constants;
+﻿using CincoVertice.WinAPI.Enums;
+using CincoVertice.WinAPI.Libs;
 using System.Runtime.InteropServices;
 
 namespace CincoVertice.WinAPI
@@ -54,7 +54,7 @@ namespace CincoVertice.WinAPI
         /// </summary>
         /// <param name="key">key.</param>
         /// <param name="kbFlags">kbFlags.</param>
-        public void AddKey(User32.KeyCode key, KeyboardInputDwFlags kbFlags)
+        public void AddKey(KeyCode key, KeyboardInputDwFlags kbFlags)
         {
             this.toSend.Add(KeyboardInput(key, kbFlags));
         }
@@ -64,23 +64,23 @@ namespace CincoVertice.WinAPI
         /// </summary>
         /// <param name="key">key.</param>
         /// <param name="modifier">! ALT, ^ CTL, + SHF, # WIN or any combination.</param>
-        public void AddKey(User32.KeyCode key, string modifier = "")
+        public void AddKey(KeyCode key, string modifier = "")
         {
             foreach (char c in modifier)
             {
                 switch (c)
                 {
                     case '^':
-                        this.toSend.Add(KeyboardInput(User32.KeyCode.VK_CONTROL, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
+                        this.toSend.Add(KeyboardInput(KeyCode.VK_CONTROL, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
                         break;
                     case '!':
-                        this.toSend.Add(KeyboardInput(User32.KeyCode.VK_MENU, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
+                        this.toSend.Add(KeyboardInput(KeyCode.VK_MENU, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
                         break;
                     case '#':
-                        this.toSend.Add(KeyboardInput(User32.KeyCode.VK_LWIN, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
+                        this.toSend.Add(KeyboardInput(KeyCode.VK_LWIN, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
                         break;
                     case '+':
-                        this.toSend.Add(KeyboardInput(User32.KeyCode.VK_SHIFT, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
+                        this.toSend.Add(KeyboardInput(KeyCode.VK_SHIFT, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
                         break;
                 }
             }
@@ -93,16 +93,16 @@ namespace CincoVertice.WinAPI
                 switch (c)
                 {
                     case '^':
-                        this.toSend.Add(KeyboardInput(User32.KeyCode.VK_CONTROL, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
+                        this.toSend.Add(KeyboardInput(KeyCode.VK_CONTROL, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
                         break;
                     case '!':
-                        this.toSend.Add(KeyboardInput(User32.KeyCode.VK_MENU, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
+                        this.toSend.Add(KeyboardInput(KeyCode.VK_MENU, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
                         break;
                     case '#':
-                        this.toSend.Add(KeyboardInput(User32.KeyCode.VK_LWIN, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
+                        this.toSend.Add(KeyboardInput(KeyCode.VK_LWIN, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
                         break;
                     case '+':
-                        this.toSend.Add(KeyboardInput(User32.KeyCode.VK_SHIFT, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
+                        this.toSend.Add(KeyboardInput(KeyCode.VK_SHIFT, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
                         break;
                 }
             }
@@ -141,8 +141,8 @@ namespace CincoVertice.WinAPI
 
             foreach (char key in text)
             {
-                textToSend.Add(KeyboardInput((User32.KeyCode)key, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
-                textToSend.Add(KeyboardInput((User32.KeyCode)key, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
+                textToSend.Add(KeyboardInput((KeyCode)key, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
+                textToSend.Add(KeyboardInput((KeyCode)key, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
 
                 INPUT[] inputs = textToSend.ToArray();
 
@@ -192,18 +192,18 @@ namespace CincoVertice.WinAPI
         /// <param name="key">key.</param>
         /// <param name="ctlPressed">Is control key pressed?.</param>
         /// <param name="altPressed">Is alt key pressed?.</param>
-        public static void SendKey(User32.KeyCode key, bool ctlPressed = false, bool altPressed = false)
+        public static void SendKey(KeyCode key, bool ctlPressed = false, bool altPressed = false)
         {
             List<INPUT> list = new List<INPUT>();
 
             if (ctlPressed)
             {
-                list.Add(KeyboardInput(User32.KeyCode.VK_CONTROL, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
+                list.Add(KeyboardInput(KeyCode.VK_CONTROL, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
             }
 
             if (altPressed)
             {
-                list.Add(KeyboardInput(User32.KeyCode.VK_MENU, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
+                list.Add(KeyboardInput(KeyCode.VK_MENU, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
             }
 
             list.Add(KeyboardInput(key, KeyboardInputDwFlags.KEYEVENTF_KEYDOWN));
@@ -211,12 +211,12 @@ namespace CincoVertice.WinAPI
 
             if (ctlPressed)
             {
-                list.Add(KeyboardInput(User32.KeyCode.VK_CONTROL, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
+                list.Add(KeyboardInput(KeyCode.VK_CONTROL, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
             }
 
             if (altPressed)
             {
-                list.Add(KeyboardInput(User32.KeyCode.VK_MENU, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
+                list.Add(KeyboardInput(KeyCode.VK_MENU, KeyboardInputDwFlags.KEYEVENTF_KEYUP));
             }
 
             INPUT[] kbinputs = list.ToArray();
@@ -321,7 +321,7 @@ namespace CincoVertice.WinAPI
         /// <param name="key">key</param>
         /// <param name="kbFlags">flags</param>
         /// <returns>Returns INPUT information for SendInput() events</returns>
-        public static INPUT KeyboardInput(User32.KeyCode key, KeyboardInputDwFlags kbFlags)
+        public static INPUT KeyboardInput(KeyCode key, KeyboardInputDwFlags kbFlags)
         {
             INPUT kbinput = new INPUT()
             {
@@ -445,7 +445,7 @@ namespace CincoVertice.WinAPI
 
             do
             {
-                state = User32.GetAsyncKeyState(User32.KeyCode.VK_CONTROL);
+                state = User32.GetAsyncKeyState(KeyCode.VK_CONTROL);
             } while (((1 << 15) & state) != 0);
         }
 
@@ -458,7 +458,7 @@ namespace CincoVertice.WinAPI
 
             do
             {
-                state = User32.GetAsyncKeyState(User32.KeyCode.VK_MENU);
+                state = User32.GetAsyncKeyState(KeyCode.VK_MENU);
             } while (((1 << 15) & state) != 0);
         }
 
@@ -471,7 +471,7 @@ namespace CincoVertice.WinAPI
 
             do
             {
-                state = User32.GetAsyncKeyState(User32.KeyCode.VK_SHIFT);
+                state = User32.GetAsyncKeyState(KeyCode.VK_SHIFT);
             } while (((1 << 15) & state) != 0);
         }
 
@@ -484,12 +484,12 @@ namespace CincoVertice.WinAPI
 
             do
             {
-                state = User32.GetAsyncKeyState(User32.KeyCode.VK_LWIN);
+                state = User32.GetAsyncKeyState(KeyCode.VK_LWIN);
             } while (((1 << 15) & state) != 0);
 
             do
             {
-                state = User32.GetAsyncKeyState(User32.KeyCode.VK_RWIN);
+                state = User32.GetAsyncKeyState(KeyCode.VK_RWIN);
             } while (((1 << 15) & state) != 0);
         }
     }
