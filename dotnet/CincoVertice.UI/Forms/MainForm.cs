@@ -1,3 +1,4 @@
+using CincoVertice.UI.Forms;
 using CincoVertice.WinAPI;
 using CincoVertice.WinAPI.Enums;
 using CincoVertice.WinAPI.Hotkey;
@@ -6,7 +7,7 @@ namespace CincoVertice
 {
     public partial class MainForm : Form
     {
-        private MouseMoveSimulator _mouse;
+        private readonly MouseMoveSimulator _mouse = new MouseMoveSimulator();
 
         public MainForm()
         {
@@ -22,8 +23,9 @@ namespace CincoVertice
                 KeyCode.D0,
                 HK_KeyPressed));
 
-            _mouse = new MouseMoveSimulator();
             _mouse.Interval = 5000;
+
+            mdiTab.OpenMDI<SnippingForm>(false);
         }
 
         private void HK_KeyPressed(object sender, HotkeyPressedEventArgs e)
