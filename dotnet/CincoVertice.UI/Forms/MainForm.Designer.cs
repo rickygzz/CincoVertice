@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             checkBox1 = new CheckBox();
-            mdiTab1 = new CincoVertice.UI.Controls.MdiTab.MdiTab();
-            tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
+            mdiTab = new CincoVertice.UI.Controls.MdiTab.MdiTab();
             menu = new MenuStrip();
             mnuAbout = new ToolStripMenuItem();
-            mdiTab1.SuspendLayout();
+            mdiTab.SuspendLayout();
             menu.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,40 +49,18 @@
             // 
             // mdiTab1
             // 
-            mdiTab1.AllowDrop = true;
-            mdiTab1.Appearance = TabAppearance.Buttons;
-            mdiTab1.Controls.Add(tabPage1);
-            mdiTab1.Controls.Add(tabPage2);
-            mdiTab1.Dock = DockStyle.Top;
-            mdiTab1.DrawMode = TabDrawMode.OwnerDrawFixed;
-            mdiTab1.ItemSize = new Size(0, 30);
-            mdiTab1.Location = new Point(0, 24);
-            mdiTab1.MaximumSize = new Size(800, 31);
-            mdiTab1.Name = "mdiTab1";
-            mdiTab1.Padding = new Point(18, 3);
-            mdiTab1.SelectedIndex = 0;
-            mdiTab1.Size = new Size(800, 31);
-            mdiTab1.TabIndex = 1;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Location = new Point(4, 34);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(792, 0);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            tabPage2.Location = new Point(4, 34);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(792, 0);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            mdiTab.AllowDrop = true;
+            mdiTab.Appearance = TabAppearance.Buttons;
+            mdiTab.Dock = DockStyle.Top;
+            mdiTab.DrawMode = TabDrawMode.OwnerDrawFixed;
+            mdiTab.ItemSize = new Size(0, 30);
+            mdiTab.Location = new Point(0, 24);
+            mdiTab.MaximumSize = new Size(800, 31);
+            mdiTab.Name = "mdiTab1";
+            mdiTab.Padding = new Point(18, 3);
+            mdiTab.SelectedIndex = 0;
+            mdiTab.Size = new Size(800, 31);
+            mdiTab.TabIndex = 1;
             // 
             // menu
             // 
@@ -107,14 +83,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(mdiTab1);
-            Controls.Add(checkBox1);
+            Controls.Add(mdiTab);
             Controls.Add(menu);
+            IsMdiContainer = true;
             MainMenuStrip = menu;
             Name = "MainForm";
             Text = "5Vertice";
             Load += MainForm_Load;
-            mdiTab1.ResumeLayout(false);
+            mdiTab.ResumeLayout(false);
             menu.ResumeLayout(false);
             menu.PerformLayout();
             ResumeLayout(false);
@@ -124,9 +100,7 @@
         #endregion
 
         private CheckBox checkBox1;
-        private CincoVertice.UI.Controls.MdiTab.MdiTab mdiTab1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
+        private CincoVertice.UI.Controls.MdiTab.MdiTab mdiTab;
         private MenuStrip menu;
         private ToolStripMenuItem mnuAbout;
     }

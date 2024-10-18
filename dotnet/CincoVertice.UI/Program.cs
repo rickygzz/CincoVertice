@@ -40,7 +40,7 @@ namespace CincoVertice.UI
                     //    "The application is currently running",
                     //    process.ProcessName + '\n' + process.MainModule!.FileName);
 
-                    User32.SetForegroundWindow(process.MainWindowHandle);
+                    _ = User32.SetForegroundWindow(process.MainWindowHandle);
 
                     return true;
                 }
