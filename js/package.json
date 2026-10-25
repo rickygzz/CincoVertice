@@ -125,7 +125,7 @@
     "jest-validate": "^28.1.0",
     "jest-worker": "^28.1.0",
     "jest-watcher": "^28.1.0",
-    "js-yaml": "^3.14.1",
+    "js-yaml": "^3.15.2",
     "js-tokens": "^4.0.0",
     "jsesc": "^2.5.2",
     "json-parse-even-better-errors": "^2.3.1",
